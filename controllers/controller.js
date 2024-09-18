@@ -37,7 +37,7 @@ module.exports.login = async (req, res) => {
             const token = jwt.sign({ id: user._id, email: user.email }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
             // Set token in cookie
-            res.cookie('token', token, { httpOnly: true, secure: process.env.NODE_ENV === 'production' });
+            res.cookie('token', token, { httpOnly: true, secure: process.env.NODE_ENV === 'production',sameSite: 'None' });
             res.status(200).json({ message: "Login successful",token: token });
         } else {
             res.status(401).send("Invalid credentials.");
