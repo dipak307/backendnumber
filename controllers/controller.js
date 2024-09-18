@@ -38,7 +38,7 @@ module.exports.login = async (req, res) => {
 
             // Set token in cookie
             res.cookie('token', token, { httpOnly: true, secure: process.env.NODE_ENV === 'production' });
-            res.status(200).json({ message: "Login successful" });
+            res.status(200).json({ message: "Login successful",token: token });
         } else {
             res.status(401).send("Invalid credentials.");
         }
